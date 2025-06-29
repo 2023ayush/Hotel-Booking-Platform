@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/client/PropertyClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/controller/BookingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/dto/APIResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/dto/BookingDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/dto/PropertyDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/dto/RoomAvailability.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/dto/Rooms.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/entity/BookingDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/entity/Bookings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/repository/BookingDateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/repository/BookingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/config/AmazonS3Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/controller/PropertyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/APIResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/EmailRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/PropertyDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/RoomsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/Area.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/City.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/Property.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/PropertyPhotos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/RoomAvailability.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/Rooms.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/entity/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/propery/PropertyServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/PropertyServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/test/java/com/propery/PropertyServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/test/java/com/properyservice/PropertyServiceApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2zB1IvOfdFEi7NtampEu1HLR0J3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BookingServiceApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/HotelManagementSystem/booking-service",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="BookingServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.bookingservice.BookingServiceApplication" />
+      <module name="Booking-Service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bookingservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BookingServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="" />
+      <created>1751189578763</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751189578763</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HotelManagementSystem$BookingServiceApplication.ic" NAME="BookingServiceApplication Coverage Results" MODIFIED="1751189951692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.bookingservice.*</FILTER>
+    </SUITE>
+  </component>
+</project>
