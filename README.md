@@ -30,16 +30,16 @@ This is a **Hotel Booking System** built using **Spring Boot Microservices** wit
 
 | Layer              | Tools / Technologies                                 |
 |--------------------|------------------------------------------------------|
-| Language           | Java 17 (or 11+)                                     |
+| Language           | Java 17                                              |
 | Backend Framework  | Spring Boot                                          |
 | API Gateway        | Spring Cloud Gateway                                 |
 | Service Discovery  | Spring Cloud Eureka                                  |
 | Security           | Spring Security + JWT                                |
-| Database           | PostgreSQL / MySQL                                   |
+| Database           | MySQL                                                |
 | Storage            | AWS S3                                               |
 | Communication      | Feign Client                                         |
 | Build Tool         | Maven                                                |
-| Containerization   | Docker (optional)                                    |
+| Containerization   | Docker                                               |
 
 ---
 
