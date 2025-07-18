@@ -9,6 +9,7 @@
         <module name="Booking-Service" />
         <module name="API-Gate" />
         <module name="auth-service" />
+        <module name="protected-paths" />
         <module name="property-service" />
         <module name="service-registry" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="Booking-Service" options="-parameters" />
       <module name="auth-service" options="-parameters" />
       <module name="property-service" options="-parameters" />
+      <module name="protected-paths" options="-parameters" />
       <module name="service-registry" options="-parameters" />
     </option>
   </component>

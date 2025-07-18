@@ -63,19 +63,21 @@ public class AppSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityConfig(HttpSecurity http) throws Exception{
+    public SecurityFilterChain securityConfig(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests( req -> {
-                    req.requestMatchers(publicEndpoints)
-                            .permitAll()
-                            .requestMatchers("/api/v1/admin/welcome").hasAnyRole("ADMIN","USER")
-                            .anyRequest()
-                            .authenticated();
-                }) .authenticationProvider(authProvider())
-                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+        http.authorizeHttpRequests(req -> {
+                    req.requestMatchers(publicEndpoints).permitAll();
+                    req.requestMatchers("/api/v1/admin/welcome").hasAnyRole("ADMIN", "USER");
+                    req.anyRequest().authenticated();
+                })
+                .authenticationProvider(authProvider())
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+                .csrf(csrf -> csrf.disable());  // ✅ Correct for Spring Security 6+
 
-        return http.csrf().disable().build();
+        return http.build();
     }
+
+
 
 
 }

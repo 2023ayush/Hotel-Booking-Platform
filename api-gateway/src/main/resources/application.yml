@@ -21,3 +21,10 @@ spring:
             - Path=/property/**
           filters:
             - RewritePath=/property/(?<segment>.*), /${segment}
+
+        - id: protectedpaths-api
+          uri: lb://PROTECTEDPATHS
+          predicates:
+            - Path=/micro1/**
+          filters:
+            - RewritePath=/micro1/(?<segment>.*), /${segment}
