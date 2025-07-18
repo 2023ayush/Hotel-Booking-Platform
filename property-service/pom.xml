@@ -8,9 +8,9 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.3</version> <!-- Latest stable Spring Boot -->
-		<relativePath/>
+		<version>3.4.4</version>
 	</parent>
+
 
 	<groupId>com.propertyservice</groupId>
 	<artifactId>property-service</artifactId>

@@ -8,9 +8,10 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.3</version> <!-- use latest stable -->
+		<version>3.4.4</version>  <!-- Downgrade from 3.5.3 -->
 		<relativePath/>
 	</parent>
+
 
 	<groupId>com.bookingservice</groupId>
 	<artifactId>booking-service</artifactId>
