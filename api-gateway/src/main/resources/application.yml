@@ -28,3 +28,10 @@ spring:
             - Path=/micro1/**
           filters:
             - RewritePath=/micro1/(?<segment>.*), /${segment}
+
+        - id: booking-service-api
+          uri: lb://BOOKINGSERVICE
+          predicates:
+            - Path=/booking/**
+          filters:
+            - RewritePath=/booking/(?<segment>.*), /${segment}

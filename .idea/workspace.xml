@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="register and login user">
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/client/AuthServiceFeignClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/config/AppSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/controller/WelcomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/dto/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/filter/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protected-paths/src/main/java/com/example/demo/filter/JwtService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="work on protected paths">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/config/AppSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/config/AppSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/JwtFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/client/PropertyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/client/PropertyClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/controller/PropertyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/controller/PropertyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,24 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApiGatewayApplication.executor": "Run",
-    "Application.AuthServiceApplication.executor": "Run",
-    "Application.BookingServiceApplication.executor": "Run",
-    "Application.PropertyServiceApplication.executor": "Run",
-    "Application.ProtectedPathsApplication.executor": "Run",
-    "Application.ServiceRegistryApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/HotelManagementSystem/protected-paths",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AuthServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BookingServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PropertyServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ProtectedPathsApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServiceRegistryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/HotelManagementSystem/protected-paths&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.ProtectedPathsApplication">
+}</component>
+  <component name="RunManager" selected="Application.ApiGatewayApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.apigateway.ApiGatewayApplication" />
       <module name="API-Gate" />
@@ -137,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProtectedPathsApplication" />
         <item itemvalue="Application.ApiGatewayApplication" />
-        <item itemvalue="Application.AuthServiceApplication" />
         <item itemvalue="Application.PropertyServiceApplication" />
+        <item itemvalue="Application.ProtectedPathsApplication" />
         <item itemvalue="Application.BookingServiceApplication" />
+        <item itemvalue="Application.AuthServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +186,23 @@
       <option name="project" value="LOCAL" />
       <updated>1752852439687</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Completion of auth register and login part">
+      <option name="closed" value="true" />
+      <created>1752858217923</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1752858217923</updated>
+    </task>
+    <task id="LOCAL-00007" summary="work on protected paths">
+      <option name="closed" value="true" />
+      <created>1752858281230</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752858281230</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +221,9 @@
     <MESSAGE value="added accesskey and secret key in env." />
     <MESSAGE value="Save user booking and property details" />
     <MESSAGE value="register and login user" />
-    <option name="LAST_COMMIT_MESSAGE" value="register and login user" />
+    <MESSAGE value="Completion of auth register and login part" />
+    <MESSAGE value="work on protected paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="work on protected paths" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HotelManagementSystem$BookingServiceApplication.ic" NAME="BookingServiceApplication Coverage Results" MODIFIED="1751189951692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">

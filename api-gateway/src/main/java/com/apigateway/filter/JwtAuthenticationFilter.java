@@ -24,10 +24,14 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             "/auth/api/v1/auth/login",
             "/auth/api/v1/auth/register",
             "/property/api/v1/property/search-property"
+
     );
 
     private static final Map<String, List<String>> protectedEndpointsWithRoles = Map.of(
-            "/micro1/message", List.of("ROLE_ADMIN")
+            "/micro1/message", List.of("ROLE_ADMIN"),
+            "/booking/api/v1/booking/add-to-cart", List.of("ROLE_USER", "ROLE_ADMIN"),
+            "/property/api/v1/property/add-property", List.of("ROLE_ADMIN"),
+            "/property-service/property-id", List.of("ROLE_ADMIN")
     );
 
 

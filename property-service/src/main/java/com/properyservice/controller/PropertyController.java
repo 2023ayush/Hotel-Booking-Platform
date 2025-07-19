@@ -31,11 +31,6 @@ public class PropertyController {
     @Autowired
     private PropertyService propertyService;
 
-
-
-
-
-
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(PropertyController.class);
 
     @PostMapping(
