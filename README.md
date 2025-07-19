@@ -3,6 +3,11 @@
 This is a **Hotel Booking System** built using **Spring Boot Microservices** with **JWT-based authentication**, **AWS S3 image storage**, and **Spring Cloud Gateway** for routing and security. The system is designed to be scalable, secure, and easy to extend.
 
 ---
+## 📚 API Documentation
+The full API documentation with examples can be found here:  
+[Hotel Booking System API Docs](https://documenter.getpostman.com/view/33677881/2sB34kDeEU)
+
+---
 
 ## 📌 Features
 
