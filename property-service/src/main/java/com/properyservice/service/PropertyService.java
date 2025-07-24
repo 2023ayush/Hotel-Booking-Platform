@@ -125,8 +125,14 @@ public class PropertyService {
     }
 
     public Rooms getRoomById(long id) {
-        return roomRepository.findById(id).get();
+        Optional<Rooms> optionalRoom = roomRepository.findById(id);
+        if(optionalRoom.isEmpty()) {
+            // You can throw a custom exception or handle this as per your logic
+            throw new RuntimeException("Room with id " + id + " not found");
+        }
+        return optionalRoom.get();
     }
+
 
 
 }

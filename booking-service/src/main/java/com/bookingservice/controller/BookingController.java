@@ -43,7 +43,8 @@ public class BookingController {
         // Fetch property, room, and availability details from property service
         APIResponse<PropertyDto> response = propertyClient.getPropertyById(bookingDto.getPropertyId());
         APIResponse<Rooms> roomType = propertyClient.getRoomType(bookingDto.getRoomId());
-        APIResponse<List<RoomAvailability>> totalRoomsAvailable = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomAvailabilityId());
+       // APIResponse<List<RoomAvailability>> totalRoomsAvailable = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomAvailabilityId());
+        APIResponse<List<RoomAvailability>> totalRoomsAvailable = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomId());
 
         List<RoomAvailability> availableRooms = totalRoomsAvailable.getData();
 
