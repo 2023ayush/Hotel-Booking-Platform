@@ -31,7 +31,9 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             "/micro1/message", List.of("ROLE_ADMIN"),
             "/booking/api/v1/booking/add-to-cart", List.of("ROLE_USER", "ROLE_ADMIN"),
             "/property/api/v1/property/add-property", List.of("ROLE_ADMIN"),
-            "/property-service/property-id", List.of("ROLE_ADMIN")
+            "/property/api/v1/property/property-id", List.of("ROLE_ADMIN"),
+            "/property/api/v1/property/room-available-room-id", List.of("ROLE_ADMIN", "ROLE_USER"),
+            "/property/api/v1/property/room-id", List.of("ROLE_ADMIN")
     );
 
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "PROPERTY-SERVICE")
+@FeignClient(name = "PROPERTYSERVICE")
 public interface PropertyClient {
 
     @GetMapping("/api/v1/property/property-id")

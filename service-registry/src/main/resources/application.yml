@@ -1,9 +1,21 @@
 spring:
   application:
     name: service-registry
+
 server:
   port: 8761
+
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    com.netflix.eureka: DEBUG
+    com.netflix.discovery: DEBUG
+
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"

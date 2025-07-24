@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="work on protected paths">
+    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="property listed along with files uploaded to s3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/client/PropertyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/client/PropertyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/controller/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/java/com/bookingservice/controller/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/controller/PropertyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/controller/PropertyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/repository/RoomAvailabilityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/repository/RoomAvailabilityRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/service/PropertyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/service/PropertyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,11 +60,11 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/HotelManagementSystem/protected-paths&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+    &quot;last_opened_file_path&quot;: &quot;E:/SecurityTest&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.ApiGatewayApplication">
+  <component name="RunManager" selected="Application.PropertyServiceApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.apigateway.ApiGatewayApplication" />
       <module name="API-Gate" />
@@ -129,10 +132,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
         <item itemvalue="Application.PropertyServiceApplication" />
-        <item itemvalue="Application.ProtectedPathsApplication" />
         <item itemvalue="Application.BookingServiceApplication" />
+        <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.ProtectedPathsApplication" />
         <item itemvalue="Application.AuthServiceApplication" />
       </list>
     </recent_temporary>
@@ -202,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752858281230</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="property listed along with files uploaded to s3">
+      <option name="closed" value="true" />
+      <created>1752916982811</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1752916982811</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,7 +234,8 @@
     <MESSAGE value="register and login user" />
     <MESSAGE value="Completion of auth register and login part" />
     <MESSAGE value="work on protected paths" />
-    <option name="LAST_COMMIT_MESSAGE" value="work on protected paths" />
+    <MESSAGE value="property listed along with files uploaded to s3" />
+    <option name="LAST_COMMIT_MESSAGE" value="property listed along with files uploaded to s3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HotelManagementSystem$BookingServiceApplication.ic" NAME="BookingServiceApplication Coverage Results" MODIFIED="1751189951692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
