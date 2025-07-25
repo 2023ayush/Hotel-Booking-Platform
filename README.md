@@ -1,33 +1,44 @@
 # 🏨 Hotel Booking System - Microservices Architecture
 
-This is a **Hotel Booking System** built using **Spring Boot Microservices** with **JWT-based authentication**, **AWS S3 image storage**, and **Spring Cloud Gateway** for routing and security. The system is designed to be scalable, secure, and easy to extend.
+This is a **Hotel Booking System** built using **Spring Boot Microservices**, featuring **JWT-based authentication**, **Kafka-based asynchronous notifications**, **AWS S3 image storage**, and **Spring Cloud Gateway** for centralized routing and security.
+
+The system is designed for real-world scalability, modularity, and cloud readiness.
 
 ---
+
 ## 📚 API Documentation
-The full API documentation with examples can be found here:  
-[Hotel Booking System API Docs](https://documenter.getpostman.com/view/33677881/2sB34kDeEU)
+
+Explore the complete Postman API collection here:  
+👉 [Hotel Booking System API Docs](https://documenter.getpostman.com/view/33677881/2sB34kDeEU)
 
 ---
 
 ## 📌 Features
 
 ### 🔐 Authentication & API Gateway
-- JWT-based login and signup
-- Centralized routing using Spring Cloud Gateway
-- Secure access to internal services
+- User Registration & Login with **JWT Authentication**
+- API access control via **Spring Cloud Gateway**
+- Role-based authorization
 
 ### 🏢 Property Service
-- Add hotels or properties
-- Upload and store room images on **AWS S3**
-- Property CRUD APIs (Create, Read, Update, Delete)
+- Add hotel/property details
+- Upload and store images using **AWS S3**
+- Full property CRUD (Create, Read, Update, Delete)
+- **Asynchronously sends email** using Kafka after property is added
 
 ### 📅 Booking Service
-- Check room availability
-- Book rooms for selected dates
-- Prevent double booking (date validation logic)
+- Search and book available rooms
+- Prevent double bookings with **date conflict validation**
+- **Asynchronously sends email** via Kafka after booking confirmation
+
+### 📣 Notification Service
+- Consumes messages from Kafka
+- Sends **emails using JavaMailSender**
+- (Optional) Can be extended to send **SMS using Twilio or Nexmo**
 
 ### 🌐 Microservice Communication
-- Uses **Feign Clients** for clean and type-safe REST communication between services
+- Uses **OpenFeign clients** for internal REST communication between services
+- Registered via **Spring Cloud Eureka (Service Registry)**
 
 ---
 
@@ -40,21 +51,19 @@ The full API documentation with examples can be found here:
 | API Gateway        | Spring Cloud Gateway                                 |
 | Service Discovery  | Spring Cloud Eureka                                  |
 | Security           | Spring Security + JWT                                |
+| Asynchronous Comm. | Apache Kafka                                         |
+| Email Sender       | JavaMailSender                                       |
 | Database           | MySQL                                                |
 | Storage            | AWS S3                                               |
-| Communication      | Feign Client                                         |
+| REST Communication | OpenFeign                                            |
 | Build Tool         | Maven                                                |
 | Containerization   | Docker                                               |
 
 ---
 
-## 📂 Project Structure
+## 🧭 Kafka Message Flow
 
-```bash
-hotel-booking-system/
-├── api-gateway/
-├── service-registry/
-├── auth-service/
-├── property-service/
-├── booking-service/
-└── common-utils/ (optional DTOs/constants)
+| Trigger Event         | Kafka Producer Service | Kafka Topic   | Kafka Consumer Service | Action Taken              |
+|-----------------------|------------------------|----------------|-------------------------|---------------------------|
+| Property is added     | `property-service`      | `send_email`   | `notification-service`  | Sends confirmation email |
+| Booking is completed  | `booking-service`       | `send_email`   | `notification-service`  | Sends booking email      |
