@@ -12,6 +12,7 @@
         <module name="protected-paths" />
         <module name="property-service" />
         <module name="service-registry" />
+        <module name="notificationservice" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
       <module name="API-Gate" options="-parameters" />
       <module name="Booking-Service" options="-parameters" />
       <module name="auth-service" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
       <module name="property-service" options="-parameters" />
       <module name="protected-paths" options="-parameters" />
       <module name="service-registry" options="-parameters" />

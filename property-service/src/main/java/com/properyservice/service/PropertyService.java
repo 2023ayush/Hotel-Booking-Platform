@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import com.properyservice.controller.PropertyController;
 import com.properyservice.dto.APIResponse;
+import com.properyservice.dto.EmailRequest;
 import com.properyservice.dto.PropertyDto;
 import com.properyservice.dto.RoomsDto;
 import com.properyservice.entity.*;
@@ -34,6 +35,8 @@ public class PropertyService {
     private StateRepository stateRepository;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private EmailProducer emailProducer;
 
     @Autowired
     private RoomAvailabilityRepository availabilityRepository;
@@ -77,7 +80,11 @@ public class PropertyService {
 
         // Optionally store file URLs in database or DTO
         dto.setImageUrls(fileUrls); // Ensure PropertyDto has `List<String> imageUrls;`
-
+        emailProducer.sendEmail(new EmailRequest(
+                "ayush.backup1997@gmail.com",
+                "Property added!",
+                "Your property has been successfully added."
+        ));
         return dto;
     }
 
