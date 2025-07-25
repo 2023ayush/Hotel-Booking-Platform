@@ -1,6 +1,7 @@
 # 🏨 Hotel Booking System - Microservices Architecture
 
 This is a Hotel Booking System built using Spring Boot Microservices, featuring JWT-based authentication, Kafka-based asynchronous email notifications, AWS S3 image storage, and Spring Cloud Gateway for centralized routing and security.
+
 The Property Service allows users to add properties and upload room images to AWS S3, while the Booking Service manages room availability and reservations. Services interact using Feign Clients and are registered with Eureka Service Discovery for seamless communication
 
 The system is designed for real-world scalability, modularity, and cloud readiness.
