@@ -9,6 +9,7 @@ import com.auth.repository.UserRepository;
 import com.auth.service.AuthService;
 import com.auth.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +38,6 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<APIResponse<String>> register(@RequestBody UserDto dto) {
-        dto.setRole("ROLE_ADMIN");
         APIResponse<String> response = authService.register(dto);
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getStatus()));
     }
@@ -50,33 +50,46 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<APIResponse<String>> loginCheck(@RequestBody LoginDto loginDto){
+    public ResponseEntity<APIResponse<String>> loginCheck(@RequestBody LoginDto loginDto) {
 
         APIResponse<String> response = new APIResponse<>();
 
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+        UsernamePasswordAuthenticationToken authToken =
+                new UsernamePasswordAuthenticationToken(
+                        loginDto.getUsername(),
+                        loginDto.getPassword()
+                );
 
         try {
-            Authentication authenticate = authManager.authenticate(token);
+            Authentication authentication = authManager.authenticate(authToken);
 
-            if(authenticate.isAuthenticated()) {
-                String jwtToken = jwtService.generateToken(loginDto.getUsername(),
-                        authenticate.getAuthorities().iterator().next().getAuthority());
+            if (authentication.isAuthenticated()) {
+
+                // ✅ Fetch user from DB
+                User user = userRepository.findByUsername(loginDto.getUsername());
+
+                // 🔑 Generate JWT with ENUM role
+                String jwtToken = jwtService.generateToken(
+                        user.getUsername(),
+                        user.getRole().name()
+                );
 
                 response.setMessage("Login Successful");
                 response.setStatus(200);
-                response.setData(jwtToken);  // return JWT
-                return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getStatus()));
+                response.setData(jwtToken);
+
+                return ResponseEntity.ok(response);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         response.setMessage("Failed");
         response.setStatus(401);
-        response.setData("Un-Authorized Access");
-        return new ResponseEntity<>(response, HttpStatusCode.valueOf(response.getStatus()));
+        response.setData("Unauthorized Access");
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
     @GetMapping("/get-user")

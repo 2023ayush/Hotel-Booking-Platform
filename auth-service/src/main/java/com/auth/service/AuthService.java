@@ -4,6 +4,7 @@ package com.auth.service;
 import com.auth.dto.APIResponse;
 import com.auth.dto.UpdatePasswordDto;
 import com.auth.dto.UserDto;
+import com.auth.entity.Role;
 import com.auth.entity.User;
 import com.auth.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
@@ -43,6 +44,10 @@ public class AuthService {
         BeanUtils.copyProperties(dto, user);
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
+
+       // 🔥 SET DEFAULT ROLE HERE
+        user.setRole(Role.ROLE_USER);
+
         userRepository.save(user);
 
         APIResponse<String> response = new APIResponse<>();
@@ -75,7 +80,8 @@ public class AuthService {
         User user = userRepository.findByEmail(updatePasswordDto.getEmail());
 
         if(BCrypt.checkpw(updatePasswordDto.getOldPassword(), user.getPassword())) {
-            user.setPassword(updatePasswordDto.getNewPassword());
+            user.setPassword(passwordEncoder.encode(updatePasswordDto.getNewPassword()));
+
             userRepository.save(user);
             APIResponse<String> response = new APIResponse<>();
             response.setMessage("Done");

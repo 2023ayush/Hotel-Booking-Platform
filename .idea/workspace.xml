@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="Implement booking save functionality">
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/notificationservice/Consumer/EmailConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/notificationservice/dto/EmailRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/service/EmailProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f75eff01-56fd-4e48-a272-e225f16fd453" name="Changes" comment="Implemented Kafka locally to send emails after property saved.">
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_18_2025_8_58_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_18_2025_8_58_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/EmailRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/dto/EmailRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/service/PropertyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/java/com/properyservice/service/PropertyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/CustomerUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/auth/service/CustomerUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/booking-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/property-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protected-paths/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/protected-paths/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service-registry/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/service-registry/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -66,7 +72,20 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.PropertyServiceApplication">
+  <component name="RunManager" selected="Application.AuthServiceApplication">
+    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.apigateway.ApiGatewayApplication" />
+      <module name="API-Gate" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.apigateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AuthServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.auth.AuthServiceApplication" />
       <module name="auth-service" />
@@ -86,19 +105,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.bookingservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NotificationserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.notificationservice.NotificationserviceApplication" />
-      <module name="notificationservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.notificationservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PropertyServiceApplication" />
-        <item itemvalue="Application.NotificationserviceApplication" />
-        <item itemvalue="Application.BookingServiceApplication" />
-        <item itemvalue="Application.ProtectedPathsApplication" />
         <item itemvalue="Application.AuthServiceApplication" />
+        <item itemvalue="Application.BookingServiceApplication" />
+        <item itemvalue="Application.PropertyServiceApplication" />
+        <item itemvalue="Application.ProtectedPathsApplication" />
+        <item itemvalue="Application.ApiGatewayApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -231,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753332560950</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implemented Kafka locally to send emails after property saved.">
+      <option name="closed" value="true" />
+      <created>1753416139561</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1753416139561</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,7 +269,8 @@
     <MESSAGE value="property listed along with files uploaded to s3" />
     <MESSAGE value="Implement GET APIs for fetching property, room availability, and room details by ID" />
     <MESSAGE value="Implement booking save functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement booking save functionality" />
+    <MESSAGE value="Implemented Kafka locally to send emails after property saved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Kafka locally to send emails after property saved." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HotelManagementSystem$BookingServiceApplication.ic" NAME="BookingServiceApplication Coverage Results" MODIFIED="1751189951692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">

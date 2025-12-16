@@ -3,27 +3,30 @@ package com.auth.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name = "users") // safer than "user"
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name="username", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name="email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    // ===== Getters & Setters =====
 
     public long getId() {
         return id;
@@ -65,15 +68,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
+    // ✅ FIXED
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
-
-
-
-
 }
