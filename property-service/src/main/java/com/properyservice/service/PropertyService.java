@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 import com.properyservice.controller.PropertyController;
-import com.properyservice.dto.APIResponse;
-import com.properyservice.dto.EmailRequest;
-import com.properyservice.dto.PropertyDto;
-import com.properyservice.dto.RoomsDto;
+import com.properyservice.dto.*;
 import com.properyservice.entity.*;
 import com.properyservice.repository.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
+
 
 
 
@@ -48,7 +48,10 @@ public class PropertyService {
     PropertyService(PropertyController propertyController) {
         this.propertyController = propertyController;
     }
-
+    @CacheEvict(
+            value = {"property", "propertySearch", "room"},
+            allEntries = true
+    )
     public PropertyDto addProperty(PropertyDto dto, MultipartFile[] files) {
         Area area = areaRepository.findByName(dto.getArea());
         City city = cityRepository.findByName(dto.getCity());
@@ -87,58 +90,93 @@ public class PropertyService {
         ));
         return dto;
     }
+    @Cacheable(
+            value = "propertySearch",
+            key = "#city + '_' + #date",
+            unless = "#result.data == null || #result.data.isEmpty()"
+    )
+    public APIResponse<List<PropertyDto>> searchProperty(String city, LocalDate date) {
 
-    public APIResponse searchProperty(String city, LocalDate date) {
-        List<Property> properties = propertyRepository.searchProperty(city,date);
-        APIResponse<List<Property>> response = new APIResponse<>();
+        List<Property> properties = propertyRepository.searchProperty(city, date);
 
-        response.setMessage("Search result");
+        List<PropertyDto> dtoList = new ArrayList<>();
+
+        for (Property property : properties) {
+            PropertyDto dto = new PropertyDto();
+            BeanUtils.copyProperties(property, dto);
+            dto.setArea(property.getArea().getName());
+            dto.setCity(property.getCity().getName());
+            dto.setState(property.getState().getName());
+            dtoList.add(dto);
+        }
+
+        APIResponse<List<PropertyDto>> response = new APIResponse<>();
         response.setStatus(200);
-        response.setData(properties);
+        response.setMessage("Search result");
+        response.setData(dtoList);
 
         return response;
     }
 
-    public APIResponse<PropertyDto> findPropertyById(long id){
+    @Cacheable(value = "property", key = "#id", unless = "#result.data == null")
+    public APIResponse<PropertyDto> findPropertyById(long id) {
+
         APIResponse<PropertyDto> response = new APIResponse<>();
-        PropertyDto dto  = new PropertyDto();
-        Optional<Property> opProp = propertyRepository.findById(id);
-        if(opProp.isPresent()) {
-            Property property = opProp.get();
-            dto.setArea(property.getArea().getName());
-            dto.setCity(property.getCity().getName());
-            dto.setState(property.getState().getName());
-            List<Rooms> rooms = property.getRooms();
-            List<RoomsDto> roomsDto = new ArrayList<>();
-            for(Rooms room:rooms) {
-                RoomsDto roomDto = new RoomsDto();
-                BeanUtils.copyProperties(room, roomDto);
-                roomsDto.add(roomDto);
-            }
-            dto.setRooms(roomsDto);
-            BeanUtils.copyProperties(property, dto);
-            response.setMessage("Matching Record");
-            response.setStatus(200);
-            response.setData(dto);
-            return response;
+
+        Property property = propertyRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Property not found"));
+
+        PropertyDto dto = new PropertyDto();
+        BeanUtils.copyProperties(property, dto);
+        dto.setArea(property.getArea().getName());
+        dto.setCity(property.getCity().getName());
+        dto.setState(property.getState().getName());
+
+        List<RoomsDto> roomsDto = new ArrayList<>();
+        for (Rooms room : property.getRooms()) {
+            RoomsDto roomDto = new RoomsDto();
+            BeanUtils.copyProperties(room, roomDto);
+            roomsDto.add(roomDto);
+        }
+        dto.setRooms(roomsDto);
+
+        response.setStatus(200);
+        response.setMessage("Matching Record");
+        response.setData(dto);
+
+        return response;
+    }
+
+
+    @Cacheable(value = "availability", key = "#id")
+    public List<RoomAvailabilityDto> getTotalRoomsAvailable(long id) {
+
+        List<RoomAvailability> list = availabilityRepository.findByRoomId(id);
+        List<RoomAvailabilityDto> dtoList = new ArrayList<>();
+
+        for (RoomAvailability ra : list) {
+            RoomAvailabilityDto dto = new RoomAvailabilityDto();
+            dto.setDate(ra.getAvailableDate());
+            dto.setAvailableRooms(ra.getAvailableCount());
+            dtoList.add(dto);
         }
 
-        return null;
+        return dtoList;
     }
 
-    public List<RoomAvailability> getTotalRoomsAvailable(long id) {
-        return availabilityRepository.findByRoomId(id);
 
+    @Cacheable(value = "room", key = "#id")
+    public RoomsDto getRoomById(long id) {
+
+        Rooms room = roomRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
+
+        RoomsDto dto = new RoomsDto();
+        BeanUtils.copyProperties(room, dto);
+
+        return dto;
     }
 
-    public Rooms getRoomById(long id) {
-        Optional<Rooms> optionalRoom = roomRepository.findById(id);
-        if(optionalRoom.isEmpty()) {
-            // You can throw a custom exception or handle this as per your logic
-            throw new RuntimeException("Room with id " + id + " not found");
-        }
-        return optionalRoom.get();
-    }
 
 
 

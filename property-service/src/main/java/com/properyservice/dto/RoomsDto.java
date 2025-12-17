@@ -1,7 +1,11 @@
 package com.properyservice.dto;
 
 
-public class RoomsDto {
+import java.io.Serializable;
+
+public class RoomsDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private long id;
 

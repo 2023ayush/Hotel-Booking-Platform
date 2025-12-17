@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.properyservice.dto.APIResponse;
 import com.properyservice.dto.PropertyDto;
+import com.properyservice.dto.RoomAvailabilityDto;
+import com.properyservice.dto.RoomsDto;
 import com.properyservice.entity.RoomAvailability;
 import com.properyservice.entity.Rooms;
 import com.properyservice.service.PropertyService;
@@ -81,25 +83,27 @@ public class PropertyController {
     }
 
     @GetMapping("/room-available-room-id")
-    public APIResponse<List<RoomAvailability>> getTotalRoomsAvailable(@RequestParam long id){
-        List<RoomAvailability> totalRooms = propertyService.getTotalRoomsAvailable(id);
+    public APIResponse<List<RoomAvailabilityDto>> getTotalRoomsAvailable(@RequestParam long id) {
+        List<RoomAvailabilityDto> totalRooms = propertyService.getTotalRoomsAvailable(id);
 
-        APIResponse<List<RoomAvailability>> response = new APIResponse<>();
+        APIResponse<List<RoomAvailabilityDto>> response = new APIResponse<>();
         response.setMessage("Total rooms");
         response.setStatus(200);
         response.setData(totalRooms);
         return response;
     }
 
-    @GetMapping("/room-id")
-    public APIResponse<Rooms> getRoomType(@RequestParam long id){
-        Rooms room = propertyService.getRoomById(id);
 
-        APIResponse<Rooms> response = new APIResponse<>();
-        response.setMessage("Total rooms");
+    @GetMapping("/room-id")
+    public APIResponse<RoomsDto> getRoomType(@RequestParam long id) {
+        RoomsDto room = propertyService.getRoomById(id); // make sure service returns DTO
+
+        APIResponse<RoomsDto> response = new APIResponse<>();
+        response.setMessage("Room details");
         response.setStatus(200);
         response.setData(room);
         return response;
     }
+
 
 }
