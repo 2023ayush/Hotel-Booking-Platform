@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: API-Gate
+    name: API-GATEWAY
 
   redis:
     host: localhost
@@ -39,3 +39,12 @@ spring:
             - Path=/booking/**
           filters:
             - RewritePath=/booking/(?<segment>.*), /${segment}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info
+  metrics:
+    tags:
+      application: API-GATEWAY
