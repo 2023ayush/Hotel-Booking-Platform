@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booking-Service" />
+        <module name="config-server" />
         <module name="API-Gate" />
         <module name="auth-service" />
         <module name="protected-paths" />
@@ -21,6 +22,7 @@
       <module name="API-Gate" options="-parameters" />
       <module name="Booking-Service" options="-parameters" />
       <module name="auth-service" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
       <module name="property-service" options="-parameters" />
       <module name="protected-paths" options="-parameters" />

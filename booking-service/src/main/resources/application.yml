@@ -1,7 +1,10 @@
 spring:
   application:
-    name: authserviceapp
+    name: bookingservice
   profiles:
     active: dev
   config:
     import: "configserver:http://localhost:8888"
+
+server:
+  port: 9094
