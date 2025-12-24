@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: propertyservice
+  profiles:
+    active: dev
+  config:
+    import:
+      - "configserver:http://localhost:8888"
+      - "optional:classpath:.env"
