@@ -1,7 +1,11 @@
 spring:
   application:
     name: authserviceapp
+
   profiles:
     active: dev
+
   config:
-    import: "configserver:http://localhost:8888"
+    import:
+      - "configserver:http://localhost:8888"
+      - "optional:classpath:.env"

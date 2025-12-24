@@ -4,7 +4,6 @@ spring:
   profiles:
     active: dev
   config:
-    import: "configserver:http://localhost:8888"
-
-server:
-  port: 9094
+    import:
+      - "configserver:http://localhost:8888"
+      - "optional:classpath:.env"
