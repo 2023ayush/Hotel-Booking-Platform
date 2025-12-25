@@ -30,7 +30,7 @@ public class AppSecurityConfig {
 
     String[] publicEndpoints = {
             "/api/v1/auth/register",
-            "/api/v1/auth/login",
+            "/api/v1/auth/login/**",
             "/api/v1/auth/update-password",
             "/v3/api-docs/**",
             "/swagger-ui/**",
@@ -67,7 +67,9 @@ public class AppSecurityConfig {
 
         http.authorizeHttpRequests(req -> {
                     req.requestMatchers(publicEndpoints).permitAll();
-                    req.requestMatchers("/api/v1/admin/welcome").hasAnyRole("ADMIN", "USER");
+                    req.requestMatchers("/api/v1/admin/**").hasRole("ADMIN");
+                    req.requestMatchers("/api/v1/user/**").hasRole("USER");
+
                     req.anyRequest().authenticated();
                 })
                 .authenticationProvider(authProvider())
