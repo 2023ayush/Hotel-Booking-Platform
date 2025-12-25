@@ -15,24 +15,33 @@ import java.util.UUID;
 @Service
 public class S3Service {
 
-    @Autowired
-    private AmazonS3 amazonS3;
+    private final AmazonS3 amazonS3;
+    private final String bucketName;
 
-    @Value("${aws.s3.bucket-name}")
-    private String bucketName;
+    public S3Service(
+            AmazonS3 amazonS3,
+            @Value("${cloud.aws.s3.bucket-name}") String bucketName
+    ) {
+        this.amazonS3 = amazonS3;
+        this.bucketName = bucketName;
+    }
 
     public List<String> uploadFiles(MultipartFile[] files) {
         List<String> urls = new ArrayList<>();
+
         for (MultipartFile file : files) {
-            String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
             try {
                 ObjectMetadata metadata = new ObjectMetadata();
                 metadata.setContentLength(file.getSize());
+                metadata.setContentType(file.getContentType());
+
                 amazonS3.putObject(bucketName, fileName, file.getInputStream(), metadata);
-                String url = amazonS3.getUrl(bucketName, fileName).toString();
-                urls.add(url);
+                urls.add(amazonS3.getUrl(bucketName, fileName).toString());
+
             } catch (IOException e) {
-                throw new RuntimeException("Error uploading file to S3", e);
+                throw new IllegalStateException("Failed to upload file: " + fileName, e);
             }
         }
         return urls;
