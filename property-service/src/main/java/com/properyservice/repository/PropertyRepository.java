@@ -13,22 +13,19 @@ import java.util.List;
 public interface PropertyRepository extends JpaRepository<Property, Long> {
 
 	@Query("""
-    SELECT DISTINCT p
-    FROM Property p
-    JOIN p.rooms r
-    JOIN RoomAvailability ra ON ra.room = r
-    WHERE (
-        LOWER(p.city.name) LIKE LOWER(CONCAT('%', :name, '%')) OR
-        LOWER(p.area.name) LIKE LOWER(CONCAT('%', :name, '%')) OR
-        LOWER(p.state.name) LIKE LOWER(CONCAT('%', :name, '%'))
-    )
-    AND ra.availableDate = :date
+SELECT DISTINCT p
+FROM Property p
+LEFT JOIN p.rooms r
+LEFT JOIN RoomAvailability ra ON ra.room = r
+WHERE (:city IS NULL OR LOWER(p.city.name) = LOWER(:city))
+AND (:date IS NULL OR ra.availableDate = :date)
 """)
 	Page<Property> searchPropertyPaged(
-			@Param("name") String name,
+			@Param("city") String city,
 			@Param("date") LocalDate date,
 			Pageable pageable
 	);
+
 
 
 }

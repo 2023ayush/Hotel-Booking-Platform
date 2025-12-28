@@ -26,67 +26,86 @@ public class PropertyService {
     private final StateRepository stateRepository;
     private final RoomRepository roomRepository;
     private final RoomAvailabilityRepository availabilityRepository;
-    private final EmailProducer emailProducer;
-    private final S3Service s3Service;
+   // private final EmailProducer emailProducer;
+   // private final S3Service s3Service;
 
     public PropertyService(PropertyRepository propertyRepository,
                            AreaRepository areaRepository,
                            CityRepository cityRepository,
                            StateRepository stateRepository,
                            RoomRepository roomRepository,
-                           RoomAvailabilityRepository availabilityRepository,
-                           EmailProducer emailProducer,
-                           S3Service s3Service) {
+                           RoomAvailabilityRepository availabilityRepository) {
         this.propertyRepository = propertyRepository;
         this.areaRepository = areaRepository;
         this.cityRepository = cityRepository;
         this.stateRepository = stateRepository;
         this.roomRepository = roomRepository;
         this.availabilityRepository = availabilityRepository;
-        this.emailProducer = emailProducer;
-        this.s3Service = s3Service;
+       // this.emailProducer = emailProducer;
+        //this.s3Service = s3Service;
     }
 
     // ---------------- ADD PROPERTY ----------------
     @Transactional
     @CacheEvict(value = {"property", "propertySearch", "room"}, allEntries = true)
-    public PropertyDto addProperty(PropertyDto dto, MultipartFile[] files) {
+    public PropertyDto addProperty(PropertyDto dto) {
 
+        // Validate area, city, state
         Area area = areaRepository.findByName(dto.getArea());
         City city = cityRepository.findByName(dto.getCity());
         State state = stateRepository.findByName(dto.getState());
 
-        if(area == null || city == null || state == null)
+        if (area == null || city == null || state == null) {
             throw new InvalidRequestException("Invalid area, city or state");
+        }
 
+        // Create Property entity
         Property property = new Property();
         BeanUtils.copyProperties(dto, property);
         property.setArea(area);
         property.setCity(city);
         property.setState(state);
 
+        // Save Property
         Property savedProperty = propertyRepository.save(property);
 
-        // Save rooms
+        // Prepare list for saved Rooms DTO
+        List<RoomsDto> savedRoomsDto = new ArrayList<>();
+
+        // Save Rooms
         for (RoomsDto roomDto : dto.getRooms()) {
             Rooms room = new Rooms();
             BeanUtils.copyProperties(roomDto, room);
             room.setProperty(savedProperty);
-            roomRepository.save(room);
+            Rooms savedRoom = roomRepository.save(room);
+
+            // Map back saved ID to RoomsDto
+            RoomsDto savedDto = new RoomsDto();
+            BeanUtils.copyProperties(savedRoom, savedDto);
+            savedRoomsDto.add(savedDto);
         }
 
-        // Upload images
-        dto.setImageUrls(s3Service.uploadFiles(files));
+        // Create DTO to return
+        PropertyDto savedPropertyDto = new PropertyDto();
+        BeanUtils.copyProperties(savedProperty, savedPropertyDto);
+        savedPropertyDto.setArea(savedProperty.getArea().getName());
+        savedPropertyDto.setCity(savedProperty.getCity().getName());
+        savedPropertyDto.setState(savedProperty.getState().getName());
+        savedPropertyDto.setRooms(savedRoomsDto);
 
-        // Send email notification
-        emailProducer.sendEmail(new EmailRequest(
-                "ayush.backup1997@gmail.com",
-                "Property added",
-                "Your property has been successfully added"
-        ));
+        // ---------------- Optional: S3 Upload ----------------
+        // savedPropertyDto.setImageUrls(s3Service.uploadFiles(files));
 
-        return dto;
+        // ---------------- Optional: Send Email ----------------
+        // emailProducer.sendEmail(new EmailRequest(
+        //         "ayush.backup1997@gmail.com",
+        //         "Property added",
+        //         "Your property has been successfully added"
+        // ));
+
+        return savedPropertyDto;
     }
+
 
     // ---------------- SEARCH PROPERTY ----------------
     @Cacheable(value = "propertySearch",
@@ -228,8 +247,10 @@ public class PropertyService {
             RoomAvailabilityDto dto = new RoomAvailabilityDto();
             dto.setDate(ra.getAvailableDate());
             dto.setAvailableRooms(ra.getAvailableCount());
+            dto.setRoomId(ra.getRoom().getId());
             dtoList.add(dto);
         }
+
 
         return dtoList;
     }

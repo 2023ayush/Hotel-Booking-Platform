@@ -31,28 +31,33 @@ public class PropertyController {
     }
 
     // ---------------- ADD PROPERTY ----------------
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping
+// Remove consumes Multipart
     public ResponseEntity<APIResponse<PropertyDto>> addProperty(
-            @RequestParam("property") String propertyJson,
-            @RequestParam("files") MultipartFile[] files
-    ) throws Exception {
-        PropertyDto dto = objectMapper.readValue(propertyJson, PropertyDto.class);
-        PropertyDto saved = propertyService.addProperty(dto, files);
+            @RequestBody PropertyDto dto
+    ) {
+        PropertyDto saved = propertyService.addProperty(dto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new APIResponse<>(201, "Property added successfully", saved));
     }
 
+
     // ---------------- SEARCH PROPERTY WITH PAGINATION ----------------
     @GetMapping("/search-paged")
     public ResponseEntity<APIResponse<Page<PropertyDto>>> searchPropertyPaged(
-            @RequestParam String name,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String sortBy
     ) {
-        return ResponseEntity.ok(propertyService.searchProperty(name, date, page, size, sortBy));
+        return ResponseEntity.ok(
+                propertyService.searchProperty(city, date, page, size, sortBy)
+        );
     }
+
+
 
     // ---------------- GET PROPERTY BY ID ----------------
     @GetMapping("/{id}")
