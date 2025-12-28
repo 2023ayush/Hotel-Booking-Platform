@@ -2,39 +2,25 @@ spring:
   application:
     name: authserviceapp
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/hmsauthdb
-    username: root
-    password: test
+  profiles:
+    active: dev
 
-  jpa:
-    hibernate:
-      ddl-auto: update
+  config:
+    import:
+      - "configserver:http://localhost:8888"
+      - "optional:classpath:.env"
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  endpoint:
-    health:
-      show-details: always
-
-server:
-  port: 1122
-
-
-
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    prefer-ip-address: true
-
-logging:
-  level:
-    org.springframework.security: DEBUG
+#spring:
+#  application:
+#    name: authserviceapp
+#
+#  profiles:
+#    active: prod
+#
+#  config:
+#    import:
+#      - "configserver:http://config-server:8888"  # production config server
+#    fail-fast: false   # add fail-fast here if you want the service to start even if Config Server is down
+#
+#server:
+#  port: 9094

@@ -1,50 +1,19 @@
-server:
-  port: 5555
-
 spring:
   application:
-    name: API-GATEWAY
+    name: api-gateway
+  profiles:
+    active: dev
+  config:
+    import: "configserver:http://localhost:8888"
 
-  redis:
-    host: localhost
-    port: 6379
-
-  cloud:
-    gateway:
-      routes:
-        - id: auth-service-app
-          uri: lb://AUTHSERVICEAPP
-          predicates:
-            - Path=/auth/**
-          filters:
-            - RewritePath=/auth/(?<segment>.*), /${segment}
-
-        - id: propertyservice-api
-          uri: lb://PROPERTYSERVICE
-          predicates:
-            - Path=/property/**
-          filters:
-            - RewritePath=/property/(?<segment>.*), /${segment}
-
-        - id: protectedpaths-api
-          uri: lb://PROTECTEDPATHS
-          predicates:
-            - Path=/micro1/**
-          filters:
-            - RewritePath=/micro1/(?<segment>.*), /${segment}
-
-        - id: booking-service-api
-          uri: lb://BOOKINGSERVICE
-          predicates:
-            - Path=/booking/**
-          filters:
-            - RewritePath=/booking/(?<segment>.*), /${segment}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus,health,info
-  metrics:
-    tags:
-      application: API-GATEWAY
+#spring:
+#  application:
+#    name: api-gateway
+#  profiles:
+#    active: prod
+#  config:
+#    import: "configserver:http://config-server:8888"
+#    fail-fast: false
+#
+#server:
+#  port: 5555

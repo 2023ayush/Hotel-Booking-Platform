@@ -6,6 +6,17 @@ public class APIResponse<T> {
     private int status;
     private T data;
 
+    // Default constructor
+    public APIResponse() {}
+
+    // All-args constructor
+    public APIResponse(int status, String message, T data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
+    // Getters and Setters
     public String getMessage() {
         return message;
     }
@@ -24,9 +35,4 @@ public class APIResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
-
-
-
-
-
 }

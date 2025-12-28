@@ -3,56 +3,18 @@ package com.bookingservice.dto;
 import java.time.LocalDate;
 
 public class RoomAvailability {
-    private long id;
 
-    private LocalDate availableDate;
-    private int availableCount;
-    private double price;
+    private LocalDate date; // match PropertyService
+    private int availableRooms; // match PropertyService
+    private long roomId; // optional if you get roomId separately
 
-    private Rooms room;
+    // Getters & Setters
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
 
-    public long getId() {
-        return id;
-    }
+    public int getAvailableRooms() { return availableRooms; }
+    public void setAvailableRooms(int availableRooms) { this.availableRooms = availableRooms; }
 
-    public LocalDate getAvailableDate() {
-        return availableDate;
-    }
-
-    public int getAvailableCount() {
-        return availableCount;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public Rooms getRoom() {
-        return room;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setAvailableDate(LocalDate availableDate) {
-        this.availableDate = availableDate;
-    }
-
-    public void setAvailableCount(int availableCount) {
-        this.availableCount = availableCount;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setRoom(Rooms room) {
-        this.room = room;
-    }
-
-    // Getters and Setters...
-
-
-
+    public long getRoomId() { return roomId; }
+    public void setRoomId(long roomId) { this.roomId = roomId; }
 }

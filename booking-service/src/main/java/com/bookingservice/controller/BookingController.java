@@ -1,92 +1,68 @@
 package com.bookingservice.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import com.bookingservice.dto.*;
+import com.bookingservice.service.BookingService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.bookingservice.client.PropertyClient;
-import com.bookingservice.dto.APIResponse;
-import com.bookingservice.dto.BookingDto;
-import com.bookingservice.dto.PropertyDto;
-import com.bookingservice.dto.RoomAvailability;
-import com.bookingservice.dto.Rooms;
-import com.bookingservice.entity.BookingDate;
-import com.bookingservice.entity.Bookings;
-import com.bookingservice.repository.BookingDateRepository;
-import com.bookingservice.repository.BookingRepository;
 
 @RestController
 @RequestMapping("/api/v1/booking")
 public class BookingController {
 
-    @Autowired
-    private PropertyClient propertyClient;
+    private final BookingService bookingService;
 
-    @Autowired
-    private BookingRepository bookingRepository;
-
-    @Autowired
-    private BookingDateRepository bookingDateRepository;
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @PostMapping("/add-to-cart")
-    public APIResponse<List<String>> cart(@RequestBody BookingDto bookingDto) {
+    public ResponseEntity<APIResponse<BookingResponseDto>> addToCart(
+            @RequestHeader("X-User-Role") String role,
+            @RequestHeader("X-User-Name") String username,
+            @RequestBody BookingDto bookingDto) {
 
-        APIResponse<List<String>> apiResponse = new APIResponse<>();
-        List<String> messages = new ArrayList<>();
+        BookingResponseDto dto = bookingService.addToCart(bookingDto, username, role);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new APIResponse<>(201, "Booking added successfully", dto));
+    }
 
-        // Fetch property, room, and availability details from property service
-        APIResponse<PropertyDto> response = propertyClient.getPropertyById(bookingDto.getPropertyId());
-        APIResponse<Rooms> roomType = propertyClient.getRoomType(bookingDto.getRoomId());
-       // APIResponse<List<RoomAvailability>> totalRoomsAvailable = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomAvailabilityId());
-        APIResponse<List<RoomAvailability>> totalRoomsAvailable = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomId());
+    @PostMapping("/checkout")
+    public ResponseEntity<APIResponse<BookingResponseDto>> checkout(
+            @RequestHeader("X-User-Role") String role,
+            @RequestHeader("X-User-Name") String username,
+            @RequestBody CheckoutDto checkoutDto) {
 
-        List<RoomAvailability> availableRooms = totalRoomsAvailable.getData();
+        BookingResponseDto dto = bookingService.checkout(checkoutDto, username, role);
+        return ResponseEntity.ok(new APIResponse<>(200, "Checkout successful", dto));
+    }
 
-        // Check if rooms are available for each date requested
-        for (LocalDate date : bookingDto.getDate()) {
-            boolean isAvailable = availableRooms.stream()
-                    .anyMatch(ra -> ra.getAvailableDate().equals(date) && ra.getAvailableCount() > 0);
+    @GetMapping("/list")
+    public ResponseEntity<APIResponse<List<BookingResponseDto>>> listBookings(
+            @RequestHeader("X-User-Role") String role,
+            @RequestHeader("X-User-Name") String username) {
 
-            System.out.println("Date " + date + " available: " + isAvailable);
+        List<BookingResponseDto> list = bookingService.listBookings(username, role);
+        return ResponseEntity.ok(new APIResponse<>(200, "Booking list retrieved", list));
+    }
 
-            if (!isAvailable) {
-                messages.add("Room not available on: " + date);
-                apiResponse.setMessage("Sold Out");
-                apiResponse.setStatus(500);
-                apiResponse.setData(messages);
-                return apiResponse;
-            }
-        }
+    @DeleteMapping("/cancel/{bookingId}")
+    public ResponseEntity<APIResponse<String>> cancelBooking(
+            @RequestHeader("X-User-Role") String role,
+            @RequestHeader("X-User-Name") String username,
+            @PathVariable Long bookingId) {
 
-        // Save booking with status pending
-        Bookings bookings = new Bookings();
-        bookings.setName(bookingDto.getName());
-        bookings.setEmail(bookingDto.getEmail());
-        bookings.setMobile(bookingDto.getMobile());
-        bookings.setPropertyName(response.getData().getName());
-        bookings.setStatus("pending");
-        bookings.setTotalPrice(roomType.getData().getBasePrice() * bookingDto.getTotalNigths());
-        Bookings savedBooking = bookingRepository.save(bookings);
+        String message = bookingService.cancelBooking(bookingId, username, role);
+        return ResponseEntity.ok(new APIResponse<>(200, message, message));
+    }
 
-        // Save each booking date linked to the booking
-        for (LocalDate date : bookingDto.getDate()) {
-            BookingDate bookingDate = new BookingDate();
-            bookingDate.setDate(date);
-            bookingDate.setBookings(savedBooking);
-            bookingDateRepository.save(bookingDate);
-        }
+    @GetMapping("/admin/all")
+    public ResponseEntity<APIResponse<List<BookingResponseDto>>> listAllBookings(
+            @RequestHeader("X-User-Role") String role) {
 
-        // Prepare success response
-        messages.add("Booking saved with id: " + savedBooking.getId());
-        apiResponse.setMessage("Booking added successfully");
-        apiResponse.setStatus(201);
-        apiResponse.setData(messages);
-        return apiResponse;
+        List<BookingResponseDto> list = bookingService.listAllBookings(role);
+        return ResponseEntity.ok(new APIResponse<>(200, "All bookings retrieved", list));
     }
 }
