@@ -1,2 +1,4 @@
-package com.bookingservice.Controller;public class BookingControllerIntegrationTest {
+package com.bookingservice.Controller;
+
+public class BookingControllerIntegrationTest {
 }
