@@ -8,6 +8,14 @@ A **Spring Boot–based Hotel Management System** built using **microservices ar
 
 ---
 
+🔗 **Postman Collection URL:**  
+https://documenter.getpostman.com/view/33677881/2sBXVbGtCF
+
+### Covered Services
+- **Auth Service** – User registration & login
+- **Property Service** – Property & room management
+- **Booking Service** – Room availability & booking
+
 ## 🚀 Tech Stack
 
 * **Backend**: Java, Spring Boot, Spring Cloud
