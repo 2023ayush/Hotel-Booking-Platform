@@ -3,22 +3,31 @@ package com.bookingservice.client;
 import com.bookingservice.dto.APIResponse;
 import com.bookingservice.dto.PropertyDto;
 import com.bookingservice.dto.RoomAvailability;
+import com.bookingservice.dto.Rooms;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
 @FeignClient(name = "PROPERTYSERVICE")
 public interface PropertyClient {
 
-    @GetMapping("/api/v1/property/property-id")
-    public APIResponse<PropertyDto> getPropertyById(@RequestParam long id);
+    // GET /api/v1/properties/{id}
+    @GetMapping("/api/v1/properties/{id}")
+    APIResponse<PropertyDto> getPropertyById(
+            @PathVariable("id") long id
+    );
 
-    @GetMapping("/api/v1/property/room-available-room-id")
-    public APIResponse<List<RoomAvailability>> getTotalRoomsAvailable(@RequestParam long id);
+    // GET /api/v1/properties/rooms/{roomId}/availability
+    @GetMapping("/api/v1/properties/rooms/{roomId}/availability")
+    APIResponse<List<RoomAvailability>> getTotalRoomsAvailable(
+            @PathVariable("roomId") long roomId
+    );
 
-
-    @GetMapping("/api/v1/property/room-id")
-    public APIResponse<com.bookingservice.dto.Rooms> getRoomType(@RequestParam long id);
+    // GET /api/v1/properties/rooms/{roomId}
+    @GetMapping("/api/v1/properties/rooms/{roomId}")
+    APIResponse<Rooms> getRoomType(
+            @PathVariable("roomId") long roomId
+    );
 }

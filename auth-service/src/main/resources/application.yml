@@ -9,3 +9,4 @@ spring:
     import:
       - "configserver:http://localhost:8888"
       - "optional:classpath:.env"
+

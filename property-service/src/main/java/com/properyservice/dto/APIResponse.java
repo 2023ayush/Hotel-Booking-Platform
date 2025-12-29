@@ -6,6 +6,15 @@ public class APIResponse<T> {
     private int status;
     private T data;
 
+    public APIResponse() {
+    }
+
+    public APIResponse(int status, String message, T data) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -30,4 +39,3 @@ public class APIResponse<T> {
         this.data = data;
     }
 }
-

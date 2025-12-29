@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+  # ========================= Redis =========================
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - hotel-network
+
+  # ========================= Eureka Server =========================
+  eureka-server:
+    image: eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - hotel-network
+
+  # ========================= Config Server =========================
+  config-server:
+    image: config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - hotel-network
+    depends_on:
+      - eureka-server
+
+  # ========================= Auth Service =========================
+  auth-service:
+    image: auth-service:latest
+    container_name: auth-service
+    ports:
+      - "9094:9094"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://database-2.cjgeiy4eefq2.ap-south-1.rds.amazonaws.com:3306/hmsauthdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: auth_user
+      SPRING_DATASOURCE_PASSWORD: Auth@123
+    networks:
+      - hotel-network
+    depends_on:
+      - eureka-server
+      - config-server
+
+  # ========================= API Gateway =========================
+  api-gateway:
+    image: api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - "5555:5555"
+    networks:
+      - hotel-network
+    depends_on:
+      - auth-service
+      - eureka-server
+      - config-server
+      - redis
+
+networks:
+  hotel-network:
+    driver: bridge

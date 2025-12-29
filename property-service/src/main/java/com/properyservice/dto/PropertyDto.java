@@ -18,7 +18,7 @@ public class PropertyDto implements Serializable {
     private String state;
 
     private List<RoomsDto> rooms;
-    private List<String> imageUrls;
+    //private List<String> imageUrls;
 
     public long getId() {
         return id;
@@ -80,10 +80,10 @@ public class PropertyDto implements Serializable {
     public void setRooms(List<RoomsDto> rooms) {
         this.rooms = rooms;
     }
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
+//    public List<String> getImageUrls() {
+//        return imageUrls;
+//    }
+//    public void setImageUrls(List<String> imageUrls) {
+//        this.imageUrls = imageUrls;
+//    }
 }
