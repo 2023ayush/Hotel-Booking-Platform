@@ -1,6 +1,6 @@
 spring:
   application:
-    name: PROPERTYSERVICE
+    name: propertyservice
   profiles:
     active: dev
   config:
