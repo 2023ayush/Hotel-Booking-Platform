@@ -144,3 +144,8 @@ hotel-management-system
 * Gain hands-on experience with **Docker & AWS RDS**
 
 ---
+## 🏗️ System Architecture
+
+![Hotel Booking Platform Architecture](Architecture%20Diagram.png)
+
+---
