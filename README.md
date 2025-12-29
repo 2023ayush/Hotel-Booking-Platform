@@ -80,18 +80,6 @@ A **Spring Boot–based Hotel Management System** built using **microservices ar
 
 ---
 
----
-
-## 📊 Monitoring
-
-### Prometheus
-![Prometheus Screenshot](path/to/prometheus.png)
-
-### Grafana
-![Grafana Screenshot](path/to/grafana.png)
-
-
-
 ## 🐳 Docker Support
 
 Each major component is Dockerized:
