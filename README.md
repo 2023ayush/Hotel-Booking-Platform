@@ -7,9 +7,7 @@ A **Spring Boot–based Hotel Management System** built using **microservices ar
 [![Watch the demo](https://img.youtube.com/vi/LtZOS5SmiKo/0.jpg)](https://www.youtube.com/watch?v=LtZOS5SmiKo&t=28s)
 
 ---
-
-🔗 **Postman Collection URL:**  
-https://documenter.getpostman.com/view/33677881/2sBXVbGtCF
+👉 **Live API Docs:** https://documenter.getpostman.com/view/33677881/2sBXVbGtCF
 
 ### Covered Services
 - **Auth Service** – User registration & login
