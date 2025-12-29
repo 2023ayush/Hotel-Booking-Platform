@@ -1,71 +1,139 @@
-# 🏨 Hotel Booking System - Microservices Architecture
+# 🏨 Hotel Management System (Microservices Architecture)
 
-This is a Hotel Booking System built using Spring Boot Microservices, featuring JWT-based authentication, Kafka-based asynchronous email notifications, AWS S3 image storage, and Spring Cloud Gateway for centralized routing and security.
+A **Spring Boot–based Hotel Management System** built using **microservices architecture**, focusing on scalability, resilience, and real‑world production practices. This project demonstrates service discovery, centralized configuration, API gateway routing, circuit breakers, Dockerization, and clean layered architecture.
 
-The Property Service allows users to add properties and upload room images to AWS S3, while the Booking Service manages room availability and reservations. Services interact using Feign Clients and are registered with Eureka Service Discovery for seamless communication
-
-The system is designed for real-world scalability, modularity, and cloud readiness.
+[![Watch the demo](https://img.youtube.com/vi/LtZOS5SmiKo/0.jpg)](https://www.youtube.com/watch?v=LtZOS5SmiKo&t=28s)
 
 ---
 
-## 📚 API Documentation
+## 🚀 Tech Stack
 
-Explore the complete Postman API collection here:  
-👉 [Hotel Booking System API Docs](https://documenter.getpostman.com/view/33677881/2sB34kDeEU)
+* **Backend**: Java, Spring Boot, Spring Cloud
+* **Microservices**: Auth Service, Booking Service, Property Service
+* **API Gateway**: Spring Cloud Gateway
+* **Service Discovery**: Netflix Eureka
+* **Config Management**: Spring Cloud Config Server (Git backend)
+* **Resilience**: Circuit Breaker with fallback (Resilience4j)
+* **Database**: MySQL (AWS RDS)
+* **Caching**: Redis
+* **Containerization**: Docker & Docker Compose
+* **Build Tool**: Maven
 
 ---
 
-## 📌 Features
+## 🧩 Microservices Overview
 
-### 🔐 Authentication & API Gateway
-- User Registration & Login with **JWT Authentication**
-- API access control via **Spring Cloud Gateway**
-- Role-based authorization
+### 🔐 Auth Service
 
-### 🏢 Property Service
-- Add hotel/property details
-- Upload and store images using **AWS S3**
-- Full property CRUD (Create, Read, Update, Delete)
-- **Asynchronously sends email** using Kafka after property is added
+* User authentication and authorization
+* Centralized exception handling
+* Clean controller–service separation
+* Integrated with Config Server
+* Dockerized for production
 
 ### 📅 Booking Service
-- Search and book available rooms
-- Prevent double bookings with **date conflict validation**
-- **Asynchronously sends email** via Kafka after booking confirmation
 
-### 📣 Notification Service
-- Consumes messages from Kafka
-- Sends **emails using JavaMailSender**
-- (Optional) Can be extended to send **SMS using Twilio or Nexmo**
+* Room booking and availability logic
+* DTO-based request/response handling
+* Validation for total nights vs booking dates
+* Circuit breaker with fallback handling
+* Client fixes and test coverage
+* Docker + Config Server integration
 
-### 🌐 Microservice Communication
-- Uses **OpenFeign clients** for internal REST communication between services
-- Registered via **Spring Cloud Eureka (Service Registry)**
+### 🏢 Property Service
 
----
+* Property and room management
+* Refactored controllers, services, and DTOs
+* Improved business logic clarity
+* Centralized exception handling
 
-## 🧱 Tech Stack
+### 🌐 API Gateway
 
-| Layer              | Tools / Technologies                                 |
-|--------------------|------------------------------------------------------|
-| Language           | Java 17                                              |
-| Backend Framework  | Spring Boot                                          |
-| API Gateway        | Spring Cloud Gateway                                 |
-| Service Discovery  | Spring Cloud Eureka                                  |
-| Security           | Spring Security + JWT                                |
-| Asynchronous Comm. | Apache Kafka                                         |
-| Email Sender       | JavaMailSender                                       |
-| Database           | MySQL                                                |
-| Storage            | AWS S3                                               |
-| REST Communication | OpenFeign                                            |
-| Build Tool         | Maven                                                |
-| Containerization   | Docker                                               |
+* Single entry point for all services
+* Dynamic routing via Eureka discovery
+* Circuit breaker with fallback responses
+* Redis integration
+* Dockerized with Config Server support
 
 ---
 
-## 🧭 Kafka Message Flow
+## ⚙️ Configuration Server
 
-| Trigger Event         | Kafka Producer Service | Kafka Topic   | Kafka Consumer Service | Action Taken              |
-|-----------------------|------------------------|----------------|-------------------------|---------------------------|
-| Property is added     | `property-service`      | `send_email`   | `notification-service`  | Sends confirmation email |
-| Booking is completed  | `booking-service`       | `send_email`   | `notification-service`  | Sends booking email      |
+* Centralized configuration using **Spring Cloud Config Server**
+* Git-backed configuration repository
+* Environment-based configs (dev / prod)
+* `.env` files ignored for security
+* Production-ready `application.yml`
+
+---
+
+## 🛡 Resilience & Fault Tolerance
+
+* Implemented **Circuit Breaker pattern**
+* Fallback responses for:
+
+  * API Gateway
+  * Booking Service
+* Prevents cascading failures during service downtime
+
+---
+
+---
+
+## 📊 Monitoring
+
+### Prometheus
+![Prometheus Screenshot](path/to/prometheus.png)
+
+### Grafana
+![Grafana Screenshot](path/to/grafana.png)
+
+
+
+## 🐳 Docker Support
+
+Each major component is Dockerized:
+
+* Config Server
+* API Gateway
+* Auth Service
+* Booking Service
+* Property Service
+
+---
+
+## 📂 Project Structure (High Level)
+
+```
+hotel-management-system
+│
+├── config-server
+├── api-gateway
+├── auth-service
+├── booking-service
+├── property-service
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🧪 Code Quality & Practices
+
+* Clean layered architecture (Controller → Service → Repository)
+* DTO-based API design
+* Centralized exception handling
+* Refactored services for readability and maintainability
+* IDE and build artifacts ignored via `.gitignore`
+
+---
+
+
+## 🎯 Project Goals
+
+* Practice **real-world microservices architecture**
+* Learn **Spring Cloud ecosystem**
+* Implement **fault tolerance and centralized config**
+* Gain hands-on experience with **Docker & AWS RDS**
+
+---
