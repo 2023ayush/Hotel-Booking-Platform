@@ -80,6 +80,17 @@ A **Spring Boot–based Hotel Management System** built using **microservices ar
 
 ---
 
+| Service          | Port |
+| ---------------- | ---- |
+| API Gateway      | 5555 |
+| Auth Service     | 9094 |
+| Booking Service  | 9096 |
+| Property Service | 9098 |
+| Config Server    | 8888 |
+| Redis            | 6379 |
+| MySQL (AWS RDS)  | 3306 |
+
+
 ## 🐳 Docker Support
 
 Each major component is Dockerized:
