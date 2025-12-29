@@ -47,36 +47,18 @@ public class BookingService {
             throw new InvalidRequestException("Invalid input");
         }
 
-        if (bookingDto.getTotalNigths() != bookingDto.getDate().size()) {
-            throw new InvalidRequestException("Total nights mismatch");
-        }
-
         // Fetch property and room info from property-service
-        PropertyDto property = propertyClient.getPropertyById(bookingDto.getPropertyId()).getData();
+        PropertyDto property = propertyClient.getPropertyById(bookingDto.getPropertyId())
+                .getData();
         Rooms room = propertyClient.getRoomType(bookingDto.getRoomId()).getData();
         List<RoomAvailability> availableRooms = propertyClient.getTotalRoomsAvailable(bookingDto.getRoomId()).getData();
 
         // Check room availability
         for (LocalDate date : bookingDto.getDate()) {
             boolean isAvailable = availableRooms.stream()
-                    .anyMatch(ra -> ra.getDate() != null
-                            && ra.getDate().equals(date)
-                            && ra.getAvailableRooms() > 0
-                            && ra.getRoomId() == bookingDto.getRoomId());
-
+                    .anyMatch(ra -> ra.getAvailableDate().equals(date) && ra.getAvailableCount() > 0);
             if (!isAvailable) {
                 throw new InvalidRequestException("Room not available on: " + date);
-            }
-
-            // Check for duplicate booking
-            boolean alreadyBooked = bookingDateRepository.existsByRoomIdAndDateAndUsername(
-                    bookingDto.getRoomId(),
-                    date,
-                    username
-            );
-
-            if (alreadyBooked) {
-                throw new InvalidRequestException("You already have a booking for this room on: " + date);
             }
         }
 
@@ -92,13 +74,10 @@ public class BookingService {
 
         Bookings savedBooking = bookingRepository.save(booking);
 
-        // Save booking dates
         for (LocalDate date : bookingDto.getDate()) {
             BookingDate bookingDate = new BookingDate();
             bookingDate.setBookings(savedBooking);
             bookingDate.setDate(date);
-            bookingDate.setRoomId(bookingDto.getRoomId()); // set roomId
-            bookingDate.setUsername(username);            // set username
             bookingDateRepository.save(bookingDate);
         }
 
@@ -112,7 +91,6 @@ public class BookingService {
 
         return responseDto;
     }
-
 
     public BookingResponseDto checkout(CheckoutDto dto, String username, String role) {
         if (!role.equals("ROLE_USER")) {
@@ -191,7 +169,6 @@ public class BookingService {
 
     // Fallback method for circuit breaker
     public BookingResponseDto propertyFallback(BookingDto bookingDto, String username, String role, Exception ex) {
-        ex.printStackTrace(); // see real cause
-        throw new InvalidRequestException("Property service is temporarily unavailable: " + ex.getMessage());
+        throw new InvalidRequestException("Property service is temporarily unavailable");
     }
 }
