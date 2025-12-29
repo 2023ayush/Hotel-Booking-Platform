@@ -2,7 +2,8 @@
 
 A **Spring Boot–based Hotel Management System** built using **microservices architecture**, focusing on scalability, resilience, and real‑world production practices. This project demonstrates service discovery, centralized configuration, API gateway routing, circuit breakers, Dockerization, and clean layered architecture.
 
-[![Watch the demo](https://img.youtube.com/vi/LtZOS5SmiKo/0.jpg)](https://www.youtube.com/watch?v=LtZOS5SmiKo&t=28s)
+[![Watch the demo] 
+(https://img.youtube.com/vi/LtZOS5SmiKo/0.jpg)](https://www.youtube.com/watch?v=LtZOS5SmiKo&t=28s)
 
 ---
 
