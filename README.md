@@ -85,7 +85,7 @@ A **Spring Boot–based Hotel Management System** built using **microservices ar
 | API Gateway      | 5555 |
 | Auth Service     | 9094 |
 | Booking Service  | 9096 |
-| Property Service | 9098 |
+| Property Service | 8080 |
 | Config Server    | 8888 |
 | Redis            | 6379 |
 | MySQL (AWS RDS)  | 3306 |
