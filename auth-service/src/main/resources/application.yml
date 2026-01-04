@@ -10,17 +10,3 @@ spring:
       - "configserver:http://localhost:8888"
       - "optional:classpath:.env"
 
-#spring:
-#  application:
-#    name: authserviceapp
-#
-#  profiles:
-#    active: prod
-#
-#  config:
-#    import:
-#      - "configserver:http://config-server:8888"  # production config server
-#    fail-fast: false   # add fail-fast here if you want the service to start even if Config Server is down
-#
-#server:
-#  port: 9094
